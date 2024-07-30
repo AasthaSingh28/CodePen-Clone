@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Editor from "./Editor";
 
 function App() {
-  const [html, setHtml] = useState("");
+  const [html, setHtml] = useState("<h1>Hey!! All Welcome to Codepen</h1>");
   const [css, setCss] = useState("");
-  const [javascript, setJavascript] = useState("");
+  const [js, setJs] = useState("");
   const [srcDoc, setSrcDoc] = useState("");
 
   useEffect(() => {
@@ -13,34 +13,46 @@ function App() {
         <html>
           <body>${html}</body>
           <style>${css}</style>
-          <script>${javascript}</script>
+          <script>${js}</script>
         </html>
       `);
+      localStorage.setItem("playground", JSON.striginfy({ html, css, js }));
     }, 250);
 
     return () => clearTimeout(timeout);
-  }, [html, css, javascript]);
+  }, [html, css, js]);
+
+  useEffect(() => {
+    const { html, css, js } = JSON.parse(
+      localStorage.getItem("playground")
+    ) || { html: "<h1>Hey!! All Welcome to Codepen</h1>", css: "", js: "" };
+    setHtml(html);
+    setCss(css);
+    setJs(js);
+  }, []);
+
+  console.log(html, css, js);
 
   return (
     <>
       <div className="pane top-pane">
         <Editor
-          language="xml"
+          language={"html"}
           displayName="HTML"
           value={html}
           onChange={setHtml}
         />
         <Editor
-          language="css"
+          language={"css"}
           displayName="CSS"
           value={css}
           onChange={setCss}
         />
         <Editor
-          language="javascript"
-          displayName="Javascipt"
-          value={javascript}
-          onChange={setJavascript}
+          language={"js"}
+          displayName="Javascript"
+          value={js}
+          onChange={setJs}
         />
       </div>
       <div className="pane">
@@ -48,9 +60,10 @@ function App() {
           srcDoc={srcDoc}
           title="output"
           sandbox="allow-scripts"
+          frameBorder="0"
           width="100%"
           height="100%"
-        />
+        ></iframe>
       </div>
     </>
   );
