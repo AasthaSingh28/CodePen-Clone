@@ -6,7 +6,8 @@ import { githubDark } from "@uiw/codemirror-theme-github";
 import { useState } from "react";
 import { css } from "@codemirror/lang-css";
 import { AiOutlineFullscreenExit, AiOutlineFullscreen } from "react-icons/ai";
-import { SiHtml5, SiCss3, SiJavascript } from "react-icons/si";
+import { SiHtml5, SiCss3 } from "react-icons/si";
+import { DiJavascript } from "react-icons/di";
 import { FiCopy } from "react-icons/fi";
 
 const Editor = (props) => {
@@ -19,7 +20,9 @@ const Editor = (props) => {
         <div className="editor-title desktop">
           {displayName === "HTML" && <SiHtml5 size={25} color="#E44D27" />}
           {displayName === "CSS" && <SiCss3 size={25} color="#1F8FE7" />}
-          {displayName === "JS" && <SiJavascript size={25} color={"yellow"} />}
+          {displayName === "Javascript" && (
+            <DiJavascript size={25} color={"yellow"} />
+          )}
           {displayName}
           <div
             style={{

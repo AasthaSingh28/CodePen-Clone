@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Editor from "./Editor";
 
 function App() {
-  const [html, setHtml] = useState("<h1>Hey!! All Welcome to Codepen</h1>");
+  const [html, setHtml] = useState("<h1>Hey!! All Welcome to CodePlus</h1>");
   const [css, setCss] = useState("");
   const [js, setJs] = useState("");
   const [srcDoc, setSrcDoc] = useState("");
@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     const { html, css, js } = JSON.parse(
       localStorage.getItem("playground")
-    ) || { html: "<h1>Hey!! All Welcome to Codepen</h1>", css: "", js: "" };
+    ) || { html: "<h1>Hey!! All Welcome to CodePlus</h1>", css: "", js: "" };
     setHtml(html);
     setCss(css);
     setJs(js);
